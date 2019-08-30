@@ -134,7 +134,7 @@ If you need more fine-grained control you can setup the image for each page with
 
 You can also provide an image from the assets folder via a page model or custom page method, for example as a fallback if the page has no images:
 
-```php "/site/models/album.yml"
+```php "/site/models/album.php"
 <?php
 
 class AlbumPage extends Page
@@ -144,7 +144,7 @@ class AlbumPage extends Page
         if ($image = $page->images()->first()) {
           return $image;
         }
-        if (file_exists(kirby()->root('assets') . "/assets/images/default.jpg")) {
+        if (file_exists(kirby()->root('assets') . "/images/default.jpg")) {
             return new Asset("assets/images/default.jpg");
         }
         return false;
@@ -311,6 +311,15 @@ You can sort the list of pages by a given field in descending or ascending order
 ```yaml
 sortBy: date desc
 ```
+
+<since v="3.2.3">
+You can pass (link: https://www.php.net/manual/en/function.sort.php text: PHP sorting type flags), for example to make sorting work with special language specific characters.
+
+```yaml
+sortBy: title SORT_LOCALE_STRING
+sortBy: title asc SORT_LOCALE_STRING
+```
+</since>
 
 <info>
 The `sortBy` option will automatically switch off manual sorting.
