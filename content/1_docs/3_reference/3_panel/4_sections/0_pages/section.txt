@@ -144,25 +144,23 @@ info: " {{ page.date.toDate('Y-m-d') }}"
 
 ## Preview images
 
-The (preview) image for each item in the list is configured with the `image` option:
+The default preview image is the first image in the folder. If you need more fine-grained control you can setup the image for each page with further options.
+
+### Preview image from file name
 
 ```yaml
 image: page.image.findBy("name", "cover")
 ```
 
-<info>
-The query has to return an image object, so use `toFile` when necessary.
-</info>
-
-When querying a preview image by field name:
+### Preview image from field name
 
 ```yaml
 image: page.cover.toFile
 ```
 
-The default preview image is the first image in the folder.
-
-If you need more fine-grained control you can setup the image for each page with further options.
+<info>
+The query has to return an image object, so use `toFile` when necessary.
+</info>
 
 ### Preview image from assets folder
 
